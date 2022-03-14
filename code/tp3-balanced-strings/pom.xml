@@ -24,14 +24,31 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
             </plugin>
+
 
             <plugin>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
                 <version>1.5.2</version>
+                <configuration>
+                    <targetClasses>
+                        <param>fr.istic.vv.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>fr.istic.vv.*</param>
+                    </targetTests>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>mutationCoverage</goal>
+                        </goals>
+                        <phase>pre-site</phase>
+                    </execution>
+                </executions>
                 <dependencies>
                     <dependency>
                         <groupId>org.pitest</groupId>
@@ -49,6 +66,12 @@
             <artifactId>junit-jupiter</artifactId>
             <version>5.6.2</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest</artifactId>
+            <version>1.2.5</version>
+            <type>pom</type>
         </dependency>
     </dependencies>
 </project>

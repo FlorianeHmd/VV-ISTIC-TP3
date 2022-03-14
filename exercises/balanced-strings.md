@@ -26,3 +26,4 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+Le score de mutation est de 100% et il n’y a pas de mutâtes vivants.

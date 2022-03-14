@@ -11,3 +11,36 @@ Answer the following questions:
 4. In JUnit 4, an exception was expected using the `@Test` annotation, while in JUnit 5 there is a special assertion method `assertThrows`. In your opinion, what are the advantages of this new way of checking expected exceptions?
 
 ## Answer
+
+1- 
+
+2- La différence est que assertEquals utilise .equals tandis que assertSame utilise == pour comparer les 2 objets. Equals compare la valeur des objets alors que == compare les références.
+
+Exemple où assertEquals et assertSame donne le même résultat :
+````java
+String s1 = « abcd » ;
+String s2 = « abcd » ;
+assertSame(s1,s2) ; // true
+assertEquals(s1,s2) ; // true
+````
+
+Exemple où assertEquals et assertSame donne un résultat différent:
+````java
+String s1 = new String("abcd") ;
+String s2 = new String("abcd") ;
+assertSame(s1,s2) ; // false
+assertEquals(s1,s2) ; //true
+````
+
+3- Nous pouvons appeler fail() quand un résultat ne répond pas à une condition désirée :
+````java
+@Test
+public void testingCondition() {
+    int result = randomInteger();
+    if(result > Integer.MAX_VALUE) {
+        fail("Result cannot exceed integer max value");
+    }
+}
+````
+
+4- Avec cette nouvelle méthode, il est possible de tester plusieurs exceptions dans le même test.

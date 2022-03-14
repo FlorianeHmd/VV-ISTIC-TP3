@@ -53,3 +53,16 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+Le score de mutation est de 98% avec un mutant vivant :
+<br>changed conditional boundary → SURVIVED
+<br>Correspondant à la ligne 33 : 
+<br>return (day <= 28 && day > 0);
+
+<br>Pour corriger cela, il a fallu rajouter un test :
+````java
+@Test
+void testIsValidDate8() {
+assertFalse(Date.isValidDate(0, 2, 2001));
+}
+````
+Suite à cet ajout, le score de mutation est passé à 100%.
