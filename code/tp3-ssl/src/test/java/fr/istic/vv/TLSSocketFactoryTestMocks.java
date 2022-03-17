@@ -1,6 +1,9 @@
 package fr.istic.vv;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.internal.matchers.Any;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,8 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class TLSSocketFactoryTestMocks {
 
@@ -19,6 +21,7 @@ public class TLSSocketFactoryTestMocks {
         SSLSocket mockSSLSocket = mock(SSLSocket.class);
         when(mockSSLSocket.getSupportedProtocols()).thenReturn(null);
         when(mockSSLSocket.getEnabledProtocols()).thenReturn(null);
+        doNothing().when(mockSSLSocket).setEnabledProtocols(Mockito.any());
         tlsSocketFactory.prepareSocket(mockSSLSocket);
     }
 
@@ -30,7 +33,7 @@ public class TLSSocketFactoryTestMocks {
         when(mockSSLSocket.getEnabledProtocols()).thenReturn(shuffle(new String[]{"SSLv3", "TLSv1"}));
         mockSSLSocket.setEnabledProtocols(new String[] {"TLSv1.2", "TLSv1.1", "TLSv1", "SSLv3" });
         f.prepareSocket(mockSSLSocket);
-    }
+        }
 
     private String[] shuffle(String[] in) {
         List<String> list = new ArrayList<String>(Arrays.asList(in));

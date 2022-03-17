@@ -12,7 +12,17 @@ Answer the following questions:
 
 ## Answer
 
-1- 
+1- L'erreur est dûe à la représentation d'un double dans la mémoire. La solution que nous avons trouvé est la suivante :
+````java
+@Test
+void test(){
+    BigDecimal a = BigDecimal.valueOf(0.4);
+    BigDecimal b = BigDecimal.valueOf(3);
+    BigDecimal c = a.multiply(b) ;
+    BigDecimal d = BigDecimal.valueOf(1.2);
+    assertEquals(c,d);
+}
+````
 
 2- La différence est que assertEquals utilise .equals tandis que assertSame utilise == pour comparer les 2 objets. Equals compare la valeur des objets alors que == compare les références.
 
